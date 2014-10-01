@@ -16,18 +16,18 @@
 		echo $e->getMessage();
 	}*/
 	
-	include("dbclass.php");
+	include("Db.php");
 	
 	try {
 		$dbh = new DatabaseConnection();
 		
 		$result = $dbh->getAllEmployees();
-		
 		echo "<table>";
 		foreach ($result as $r) {
 			echo "<tr>";
 				echo "<td>" . $r['Namn']. "</td>";
 				echo "<td>" . $r['Adress'] . "</td>";
+                                echo "<td>" . $r['Lon'] . "</td>";
 			echo "</tr>";
 		}
 		echo "</table>";
@@ -36,9 +36,22 @@
 		echo "<br />";
 		echo "<br />";
 		
-		$id = 7;
+		$id = 6;
 		$result = $dbh->getEmployeeById($id);
 		echo "Anställds namn med id " . $id . ": " . $result['Namn'] . "";
+                
+                
+                $name = "Stina Larsson";
+                $result = $dbh->getEmployeesProjectsByName($name);
+                echo "<table>";
+		foreach ($result as $r) {
+			echo "<tr>";
+				echo "<td>" . $r['AnstalldNamn']. "</td>";
+				echo "<td>" . $r['ProjektNamn'] . "</td>";
+                                echo "<td>" . $r['TimPerV'] . "</td>";
+			echo "</tr>";
+		}
+		echo "</table>";
 	}
 	catch (Exception $e) {
 		echo $e->getMessage();

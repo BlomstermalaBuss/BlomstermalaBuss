@@ -14,7 +14,7 @@ class DatabaseConnection {
     }
 	
     public function getAllEmployees() {
-        $stmt = $this->dbh->prepare("SELECT * FROM Anstalld ORDER BY Lon DESC");
+        $stmt = $this->dbh->prepare("SELECT * FROM Anstalld");
         $stmt->execute();
         return $stmt->fetchAll();
     }

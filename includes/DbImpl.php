@@ -25,9 +25,9 @@
 		echo "<table>";
 		foreach ($result as $r) {
 			echo "<tr>";
-				echo "<td>" . $r['Namn']. "</td>";
-				echo "<td>" . $r['Adress'] . "</td>";
-                               // echo "<td>" . $r['Lon'] . "</td>";
+                            echo "<td>" . $r['Namn']. "</td>";
+                            echo "<td>" . $r['Adress'] . "</td>";
+                            echo "<td>" . $r['Lon'] . "</td>";
 			echo "</tr>";
 		}
 		echo "</table>";

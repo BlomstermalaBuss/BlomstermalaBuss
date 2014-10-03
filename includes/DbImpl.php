@@ -1,60 +1,47 @@
 ﻿<?php
 
-	/*try {
-		$dbh = new PDO('mysql:host=195.178.235.60;dbname=ac9549;charset=utf8', 'ac9549', 'kilimanjaro911');
-		$stmt = $dbh->prepare('SELECT * FROM Anstalld');
-		$stmt->execute();
-		
-		$result = $stmt->fetchAll();
-		foreach($result as $r)
-		{
-			echo "<p>" . $r['Namn'] . "</p>";
-		}
-	}
-	catch (Exception $e)
-	{
-		echo $e->getMessage();
-	}*/
+include("Db.php");
 	
-	include("Db.php");
-	
-	try {
-		$dbh = new DatabaseConnection();
-		
-		$result = $dbh->getEmployees();
-		echo "<table>";
-		foreach ($result as $r) {
-			echo "<tr>";
-                            echo "<td>" . $r['Namn']. "</td>";
-                            echo "<td>" . $r['Adress'] . "</td>";
-                            echo "<td>" . $r['Lon'] . "</td>";
-			echo "</tr>";
-		}
-		echo "</table>";
-		
-		echo "<br />";
-		echo "<br />";
-		echo "<br />";
-		
-		$id = 6;
-		$result = $dbh->getEmployeeById($id);
-		echo "Anställds namn med id " . $id . ": " . $result['Namn'] . "";
-                
-                
-                $name = "Stina Larsson";
-                $result = $dbh->getProjectsByEmployeeName($name);
-                echo "<table>";
-		foreach ($result as $r) {
-			echo "<tr>";
-				echo "<td>" . $r['AnstalldNamn']. "</td>";
-				echo "<td>" . $r['ProjektNamn'] . "</td>";
-                                echo "<td>" . $r['TimPerV'] . "</td>";
-			echo "</tr>";
-		}
-		echo "</table>";
-	}
-	catch (Exception $e) {
-		echo $e->getMessage();
-	}
+try {
+    $dbh = new DatabaseConnection();
+
+    $result1 = $dbh->getEmployees();
+    echo "<table>";
+    foreach ($result1 as $person) {
+            echo "<tr>";
+                echo "<td>" . $person['Namn']. "</td>";
+                echo "<td>" . $person['Adress'] . "</td>";
+                echo "<td>" . $person['Lon'] . "</td>";
+            echo "</tr>";
+    }
+    echo "</table>";
+
+    echo "<br />";
+    echo "<br />";
+    echo "<br />";
+
+    $id = 6;
+    $result2 = $dbh->getEmployeeById($id);
+    echo "Anställds namn med id " . $id . ": " . $result2['Namn'] . "";
+
+    echo "<br />";
+    echo "<br />";
+    echo "<br />";
+    
+    $name = "Stina Larsson";
+    $result3 = $dbh->getProjectsByEmployeeName($name);
+    echo "<table>";
+    foreach ($result3 as $person) {
+            echo "<tr>";
+                    echo "<td>" . $person['AnstalldNamn']. "</td>";
+                    echo "<td>" . $person['ProjektNamn'] . "</td>";
+                    echo "<td>" . $person['TimPerV'] . "</td>";
+            echo "</tr>";
+    }
+    echo "</table>";
+}
+catch (Exception $e) {
+        echo $e->getMessage();
+}
 	
 ?>

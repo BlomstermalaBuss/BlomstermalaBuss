@@ -21,7 +21,7 @@
 	try {
 		$dbh = new DatabaseConnection();
 		
-		$result = $dbh->getAllEmployees();
+		$result = $dbh->getEmployees();
 		echo "<table>";
 		foreach ($result as $r) {
 			echo "<tr>";
@@ -42,7 +42,7 @@
                 
                 
                 $name = "Stina Larsson";
-                $result = $dbh->getEmployeesProjectsByName($name);
+                $result = $dbh->getProjectsByEmployeeName($name);
                 echo "<table>";
 		foreach ($result as $r) {
 			echo "<tr>";

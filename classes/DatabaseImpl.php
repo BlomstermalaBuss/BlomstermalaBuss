@@ -1,9 +1,9 @@
 ﻿<?php
 
-include("Db.php");
+include("DatabaseInterface.class.php");
 	
 try {
-    $dbh = new DatabaseConnection();
+    $dbh = new DatabaseInterface();
 
     $result1 = $dbh->getEmployees();
     echo "<table>";

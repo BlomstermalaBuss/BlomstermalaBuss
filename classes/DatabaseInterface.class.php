@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseConnection {
+class DatabaseInterface {
 
     private $dbh;
 	

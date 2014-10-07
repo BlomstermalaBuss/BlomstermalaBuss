@@ -18,7 +18,8 @@ class DatabaseInterface {
     }
 	
     public function getTravels() {
-        $sql = "SELECT * FROM Travels";
+        $sql = "SELECT *
+                FROM Travels";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -38,17 +39,25 @@ class DatabaseInterface {
     }
     
     public function getTravelers() {
-        $sql = "SELECT * FROM Travelers";
+        $sql = "SELECT *
+                FROM Travelers";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     
     public function getTravelersByTravelId($id) {
-        /*$sql = "SELECT * 
+        $sql = "SELECT Name, SocialSecurityNr, City, Zipcode, Street, Country
                 FROM Traveler
                 INNER JOIN Booking
-                ON "*/
+                ON Traveler.TravelerID = Booking.TravelerID
+                INNER JOIN Travel
+                ON Booking.TravelID = Travel.TravelID
+                WHERE Travel.TravelID = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
     
     public function addWeeklySchedule($departure, $destination, $day, $departureTime, $arrivalTime, $price, $maxTravelerAmount) {
@@ -66,14 +75,16 @@ class DatabaseInterface {
     }
     
     public function getWeeklySchedule() {
-        $sql = "SELECT * FROM WeeklySchedule";
+        $sql = "SELECT * 
+                FROM WeeklySchedule";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     
     public function getBookings() {
-        $sql = "SELECT * FROM Booking";
+        $sql = "SELECT *
+                FROM Booking";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

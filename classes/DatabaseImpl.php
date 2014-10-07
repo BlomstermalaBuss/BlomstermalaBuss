@@ -5,17 +5,21 @@ include("DatabaseInterface.class.php");
 try {
     $dbh = new DatabaseInterface();
 
-    $result1 = $dbh->getEmployees();
+    $result1 = $dbh->getWeeklySchedule();
     echo "<table>";
-    foreach ($result1 as $person) {
+    foreach ($result1 as $Schedule) {
             echo "<tr>";
-                echo "<td>" . $person['Namn']. "</td>";
-                echo "<td>" . $person['Adress'] . "</td>";
-                echo "<td>" . $person['Lon'] . "</td>";
+                echo "<td>" . $Schedule['Departure']. "</td>";
+                echo "<td>" . $Schedule['Destination'] . "</td>";
+                echo "<td>" . $Schedule['Day'] . "</td>";
+                echo "<td>" . $Schedule['DepartureTime'] . "</td>";
+                echo "<td>" . $Schedule['ArrivalTime'] . "</td>";
+                echo "<td>" . $Schedule['Price'] . "</td>";
+                echo "<td>" . $Schedule['MaxTravelerAmount'] . "</td>";
             echo "</tr>";
     }
     echo "</table>";
-
+/*
     echo "<br />";
     echo "<br />";
     echo "<br />";
@@ -36,9 +40,9 @@ try {
                     echo "<td>" . $person['AnstalldNamn']. "</td>";
                     echo "<td>" . $person['ProjektNamn'] . "</td>";
                     echo "<td>" . $person['TimPerV'] . "</td>";
-            echo "</tr>";
+            echo "</tr>"; 
     }
-    echo "</table>";
+    echo "</table>"; */
 }
 catch (Exception $e) {
         echo $e->getMessage();

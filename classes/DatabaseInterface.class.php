@@ -24,6 +24,19 @@ class DatabaseInterface {
         return $stmt->fetchAll();
     }
     
+    public function addTraveler($name, $socialSecuritynNr, $city, $zipcode, $street, $country) {
+        $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, City, Zipcode, Street, Country)
+                VALUES (:name, :socialSecurityNr, :city, :zipcode, :street, :country)";
+        $stmt = $this->dbh->prepare($sql);
+        $result = $stmt->execute(array(':name' => $name,
+                             ':socialSecurityNr' => $socialSecuritynNr,
+                             ':city' => $city,
+                             ':zipcode' => $zipcode,
+                             ':street' => $street,
+                             ':country' => $country));
+        return $result;
+    }
+    
     public function getTravelers() {
         $sql = "SELECT * FROM Travelers";
         $stmt = $this->dbh->prepare($sql);

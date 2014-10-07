@@ -19,6 +19,13 @@ try {
             echo "</tr>";
     }
     echo "</table>";
+    
+    try {
+        //$res = $dbh->addTraveler("Daniel Nilsson", "19860411", "Svedala", "12345", "Gulvitegatan 3", "Sweden");
+        //echo $res;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 /*
     echo "<br />";
     echo "<br />";

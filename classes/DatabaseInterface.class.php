@@ -44,6 +44,13 @@ class DatabaseInterface {
         return $stmt->fetchAll();
     }
     
+    public function getTravelersByTravelId($id) {
+        /*$sql = "SELECT * 
+                FROM Traveler
+                INNER JOIN Booking
+                ON "*/
+    }
+    
     public function addWeeklySchedule($departure, $destination, $day, $departureTime, $arrivalTime, $price, $maxTravelerAmount) {
         $sql = "INSERT INTO WeeklySchedule (Departure, Destination, Day, DepartureTime, ArrivalTime, Price, MaxTravelerAmount)
                 VALUES (:departure, :destination, :day, :departureTime, :arrivalTime, :price, :maxTravelerAmount)";

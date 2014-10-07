@@ -28,13 +28,13 @@ class DatabaseInterface {
         $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, City, Zipcode, Street, Country)
                 VALUES (:name, :socialSecurityNr, :city, :zipcode, :street, :country)";
         $stmt = $this->dbh->prepare($sql);
-        $result = $stmt->execute(array(':name' => $name,
-                             ':socialSecurityNr' => $socialSecuritynNr,
-                             ':city' => $city,
-                             ':zipcode' => $zipcode,
-                             ':street' => $street,
-                             ':country' => $country));
-        return $result;
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':socialSecurityNr', $socialSecuritynNr, PDO::PARAM_STR);
+        $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+        $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
+        $stmt->bindValue(':street', $street, PDO::PARAM_STR);
+        $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+        return $stmt->execute();
     }
     
     public function getTravelers() {
@@ -48,14 +48,14 @@ class DatabaseInterface {
         $sql = "INSERT INTO WeeklySchedule (Departure, Destination, Day, DepartureTime, ArrivalTime, Price, MaxTravelerAmount)
                 VALUES (:departure, :destination, :day, :departureTime, :arrivalTime, :price, :maxTravelerAmount)";
         $stmt = $this->dbh->prepare($sql);
-        $result = $stmt->execute(array(':departure' => $departure,
-                         ':destination' => $destination,
-                         ':day' => $day,
-                         ':departureTime' => $departureTime,
-                         ':arrivalTime' => $arrivalTime,
-                         ':price' => $price,
-                         ':maxTravelerAmount' => $maxTravelerAmount));
-        return $result;
+        $stmt->bindValue(':departure', $departure, PDO::PARAM_STR);
+        $stmt->bindValue(':destination', $destination, PDO::PARAM_STR);
+        $stmt->bindValue(':day', $day, PDO::PARAM_STR);
+        $stmt->bindValue(':departureTime', $departureTime, PDO::PARAM_STR);
+        $stmt->bindValue(':arrivalTime', $arrivalTime, PDO::PARAM_STR);
+        $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+        $stmt->bindValue(':maxTravelerAmount', $maxTravelerAmount, PDO::PARAM_INT);
+        return $stmt->execute();
     }
     
     public function getWeeklySchedule() {

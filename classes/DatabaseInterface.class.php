@@ -44,6 +44,20 @@ class DatabaseInterface {
         return $stmt->fetchAll();
     }
     
+    public function addWeeklySchedule($departure, $destination, $day, $departureTime, $arrivalTime, $price, $maxTravelerAmount) {
+        $sql = "INSERT INTO WeeklySchedule (Departure, Destination, Day, DepartureTime, ArrivalTime, Price, MaxTravelerAmount)
+                VALUES (:departure, :destination, :day, :departureTime, :arrivalTime, :price, :maxTravelerAmount)";
+        $stmt = $this->dbh->prepare($sql);
+        $result = $stmt->execute(array(':departure' => $departure,
+                         ':destination' => $destination,
+                         ':day' => $day,
+                         ':departureTime' => $departureTime,
+                         ':arrivalTime' => $arrivalTime,
+                         ':price' => $price,
+                         ':maxTravelerAmount' => $maxTravelerAmount));
+        return $result;
+    }
+    
     public function getWeeklySchedule() {
         $sql = "SELECT * FROM WeeklySchedule";
         $stmt = $this->dbh->prepare($sql);

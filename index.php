@@ -15,16 +15,16 @@
                     </tr>
                 </table>
             </div>
-            <div class="border"</div>
+            <div class="border"></div>
             <div id="textcontainer">
             <?php
             
-                if (isset($_GET['p'])) {
-                    require_once('pages/' . $_GET['p'] . ".php");
+                $get = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_STRING);
+                if (isset($get)) {
+                    require_once("pages/" . $get . ".php");
                 }
-                else    
-                {
-                    require_once('pages/home.php');
+                else {
+                    require_once("pages/home.php");
                 }
             
             ?>

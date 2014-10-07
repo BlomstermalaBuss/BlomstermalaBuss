@@ -7,15 +7,15 @@ try {
 
     $result1 = $dbh->getWeeklySchedule();
     echo "<table>";
-    foreach ($result1 as $Schedule) {
+    foreach ($result1 as $schedule) {
             echo "<tr>";
-                echo "<td>" . $Schedule['Departure']. "</td>";
-                echo "<td>" . $Schedule['Destination'] . "</td>";
-                echo "<td>" . $Schedule['Day'] . "</td>";
-                echo "<td>" . $Schedule['DepartureTime'] . "</td>";
-                echo "<td>" . $Schedule['ArrivalTime'] . "</td>";
-                echo "<td>" . $Schedule['Price'] . "</td>";
-                echo "<td>" . $Schedule['MaxTravelerAmount'] . "</td>";
+                echo "<td>" . $schedule['Departure']. "</td>";
+                echo "<td>" . $schedule['Destination'] . "</td>";
+                echo "<td>" . $schedule['Day'] . "</td>";
+                echo "<td>" . $schedule['DepartureTime'] . "</td>";
+                echo "<td>" . $schedule['ArrivalTime'] . "</td>";
+                echo "<td>" . $schedule['Price'] . "</td>";
+                echo "<td>" . $schedule['MaxTravelerAmount'] . "</td>";
             echo "</tr>";
     }
     echo "</table>";

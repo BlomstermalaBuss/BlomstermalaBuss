@@ -1,16 +1,17 @@
 <?php
 
+require_once('../../DatabaseConfiguration.class.php');
+
 class DatabaseInterface {
 
     private $dbh;
-	
-    private $host = "195.178.235.60";
-    private $database = "ac9549";
-    private $username = "ac9549";
-    private $password = "kilimanjaro911";
-
+    
     public function __construct() {
-        $this->dbh = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->database . ';charset=utf8', $this->username, $this->password);
+        $dbConf = new DatabaseConfiguration();
+        
+        $this->dbh = new PDO('mysql:host=' . $dbConf->getHost() . ';'
+                           . 'dbname=' . $dbConf->getDatabase() . ';'
+                           . 'charset=utf8', $dbConf->getUsername(), $dbConf->getPassword());
     }
 	
     public function getEmployees() {

@@ -1,5 +1,34 @@
-<?php
-
-    echo "Hello World!";
-	
-?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blomstermåla Buss Bokningssystem</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <div id="container">
+            <div id="menu">
+                <table>
+                    <tr>
+                        <td><a href="?p=home">Hem</a></td>
+                        <td><a href="?p=booking">Boka resor</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="border"</div>
+            <div id="textcontainer">
+            <?php
+            
+                if (isset($_GET['p'])) {
+                    require_once('pages/' . $_GET['p'] . ".php");
+                }
+                else    
+                {
+                    require_once('pages/home.php');
+                }
+            
+            ?>
+            </div>
+        </div>
+    </body>
+</html>

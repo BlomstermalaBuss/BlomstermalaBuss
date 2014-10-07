@@ -6,6 +6,9 @@ class DatabaseInterface {
 
     private $dbh;
     
+    
+    //test text
+    
     public function __construct() {
         $dbConf = new DatabaseConfiguration();
         

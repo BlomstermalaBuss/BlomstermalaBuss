@@ -1,10 +1,28 @@
        <form action="pages/processing/processing_booking.php" method="post">
+           
+           <?php 
+           include "classes/DatabaseInterface.class.php";
+           
+           $dbh = new DatabaseInterface();        
+           $result1 = $dbh->getWeeklySchedule();
+           ?>    
             <select size="5">
-            <option value="test1">test1</option>
-             <option value="test2">test2</option>
-             <option value="test3">test3</option>
-             <option value="test4">test4</option>
-             </select>
+            <?php foreach ($result1 as $schedule) {
+                ?>
+                <option value = "<?php echo($schedule['Departure']);
+                echo($schedule['WeeklyScheduleID']);
+                
+                ?>" >
+                <?php  echo($schedule['Departure'] . " ");
+                echo($schedule['Destination'] . " ");
+                echo($schedule['Day'] . " ");
+                echo($schedule['DepartureTime'] . " ");
+                echo($schedule['ArrivalTime'] . " ");
+                echo($schedule['Price'] . " ");
+                ?>
+            </option>
+                <?php } ?>
+             </select> 
             
             <br><br>
             

@@ -70,6 +70,9 @@ table {
     border-collapse: separate;
     border-spacing: 10px 5px;
 }
+p {
+    margin: 4px;
+}
       
 .border {
     border-top: 1px dotted #CCC;

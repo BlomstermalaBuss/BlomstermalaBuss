@@ -1,18 +1,30 @@
+<?php
+include("classes/DatabaseInterface.class.php");
+?>
+
 <form action="pages/processing/processing_booking.php" method="post">
     <select size="2">
-        <option value="Trip1">Test1</option>
-        <option value="Trip2">Test2</option>
-    </select>
+    <?php
+    $dbh= new DatabaseInterface();
+    $result1 = $dbh->getTravelers();
     
-    <br><br>
-    <input type="text" name="Name" placeholder="Name">
-    <br><br>
-    <input type="text" name="SocialSecurityNr" placeholder="Social Security Number">
+    foreach ($result1 as $traveler) {
+       
+          ?>
+    
+    
+        <option value= "<?php echo $traveler['TravelerID']  ?>"  > <?php  echo $traveler['Name']  ?> </option>
+    
+    
+    <?php } ?>
+    </select>
+  
+    
+   
     <br><br>
     <input type="submit" value="Cancel your trip">
     
 </form>
     
-
 
   

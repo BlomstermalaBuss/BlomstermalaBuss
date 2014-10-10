@@ -7,7 +7,7 @@ if (isset($_POST)) {
     $destination = $_POST['Destination'];
     $day = $_POST['Day'];
     $departureTime = $_POST['DepartureTime'];
-    $arrivalTime = $_POST['DestinationTime'];
+    $arrivalTime = $_POST['ArrivalTime'];
     $price = $_POST['Price'];
     $maxTravelerAmount = $_POST['MaxTravelerAmount'];
     

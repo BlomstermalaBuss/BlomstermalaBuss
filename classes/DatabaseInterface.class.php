@@ -37,7 +37,7 @@ class DatabaseInterface {
     
     public function getTravelers() {
         $sql = "SELECT *
-                FROM Travelers";
+                FROM Traveler";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

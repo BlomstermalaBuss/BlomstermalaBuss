@@ -13,6 +13,7 @@
                         <td><a href="?p=home">Hem</a></td>
                         <td><a href="?p=booking">Boka resor</a></td>
                         <td><a href="?p=cancellation">Avbokning</a></td>
+                        <td><a href="?p=weeklyschedule">Hantera veckoschema</a></td>
                     </tr>
                 </table>
             </div>

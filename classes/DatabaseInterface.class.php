@@ -16,18 +16,32 @@ class DatabaseInterface {
 	
     public function getTravels() {
         $sql = "SELECT *
-                FROM Travels";
+                FROM Travel";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     
-    public function addTraveler($name, $socialSecuritynNr, $city, $zipcode, $street, $country) {
+    public function getTravelsByTravelerId($id) {
+        $sql = "SELECT *
+                FROM Travel
+                INNER JOIN Booking
+                ON Travel.TravelID = Booking.TravelerID
+                INNER JOIN Traveler
+                ON Booking.TravelID = Traveler.TravelerID
+                WHERE Traveler.TravelerID = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    public function addTraveler($name, $socialSecurityNr, $city, $zipcode, $street, $country) {
         $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, City, Zipcode, Street, Country)
                 VALUES (:name, :socialSecurityNr, :city, :zipcode, :street, :country)";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':socialSecurityNr', $socialSecuritynNr, PDO::PARAM_STR);
+        $stmt->bindValue(':socialSecurityNr', $socialSecurityNr, PDO::PARAM_STR);
         $stmt->bindValue(':city', $city, PDO::PARAM_STR);
         $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
         $stmt->bindValue(':street', $street, PDO::PARAM_STR);

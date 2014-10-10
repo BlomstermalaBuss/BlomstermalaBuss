@@ -1,13 +1,10 @@
 <?php
 
-require_once('../../DatabaseConfiguration.class.php');
+require_once('' . $_SERVER['DOCUMENT_ROOT'] . '/DatabaseConfiguration.class.php');
 
 class DatabaseInterface {
 
     private $dbh;
-    
-    
-    //test text
     
     public function __construct() {
         $dbConf = new DatabaseConfiguration();

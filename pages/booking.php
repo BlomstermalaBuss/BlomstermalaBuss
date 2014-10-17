@@ -6,23 +6,32 @@
            $dbh = new DatabaseInterface();        
            $result1 = $dbh->getWeeklySchedule();
            ?>    
-            <select size="5">
-            <?php foreach ($result1 as $schedule) {
-                ?>
-                <option value = "<?php echo($schedule['Departure']);
-                echo($schedule['WeeklyScheduleID']);
-                
-                ?>" >
-                <?php  echo($schedule['Departure'] . " ");
-                echo($schedule['Destination'] . " ");
-                echo($schedule['Day'] . " ");
-                echo($schedule['DepartureTime'] . " ");
-                echo($schedule['ArrivalTime'] . " ");
-                echo($schedule['Price'] . " ");
-                ?>
-            </option>
-                <?php } ?>
-             </select> 
+   
+           <table class="weekly">
+               <tr>
+                   <th>Choise</th>
+                   <th>Departure</th>
+                   <th>Destination</th>
+                   <th>Day</th>
+                   <th>DepartureTime</th>
+                   <th>ArrivalTime</th>
+                   <th>Price</th>
+               </tr>
+            <?php
+            foreach ($result1 as $schedule) 
+            {
+                echo("<tr>"
+                    .  "<td>" . "<input type='Radio' name='Radio' value='" . $schedule['WeeklyScheduleID']. "'>" . "</td>"
+                    .  "<td>" . $schedule['Departure'] . "</td>"
+                    .  "<td>" . $schedule['Destination'] . "</td>"
+                    .  "<td>" . $schedule['Day'] . "</td>"
+                    .  "<td>" . $schedule['DepartureTime'] . "</td>"
+                    .  "<td>" . $schedule['ArrivalTime'] . "</td>"
+                    .  "<td>" . $schedule['Price'] . "</td>"
+            . "</tr>");
+            }
+            ?>   
+           </table>
             
             <br><br>
             
@@ -38,7 +47,5 @@
             <br><br>
             <input type="text" name="Country" placeholder="Country">
             <br><br>
-            <input type="submit" value="Book">
-             
-            
+            <input type="submit" value="Book">           
         </form>

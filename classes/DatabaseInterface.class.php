@@ -49,6 +49,14 @@ class DatabaseInterface {
         return $stmt->execute();
     }
     
+    public function removeTraveler($id) {
+        $sql = "DELETE FROM Traveler
+                WHERE TravelerID = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    
     public function getTravelers() {
         $sql = "SELECT *
                 FROM Traveler";
@@ -93,12 +101,38 @@ class DatabaseInterface {
         return $stmt->fetchAll();
     }
     
+    public function removeWeeklySchedule($id) {
+        $sql = "DELETE FROM WeeklySchedule
+                WHERE WeeklyScheduleID = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    
     public function getBookings() {
         $sql = "SELECT *
                 FROM Booking";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+    
+    public function addBooking($travelerId, $travelId) {
+        $sql = "INSERT INTO Booking (TravelerID, TravelID)
+                VALUES (:travelerId, :travelId)";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_INT);
+        $stmt->bindValue(':travelId', $travelId, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    
+    public function removeBooking($travelerId, $travelId) {
+        $sql = "DELETE FROM Booking
+                WHERE TravelerID = :travelerId AND TravelID = :travelId";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_INT);
+        $stmt->bindValue(':travelId', $travelId, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
 }

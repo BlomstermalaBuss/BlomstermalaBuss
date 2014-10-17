@@ -49,15 +49,6 @@ class DatabaseInterface {
         return $stmt->execute();
     }
     
-    public function addTravelerToTravel($travelerId, $travelId) {
-        $sql = "INSERT INTO Booking (TravelerID, TravelID)
-                VALUES (:travelerId, :travelId)";
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_INT);
-        $stmt->bindValue(':travelId', $travelId, PDO::PARAM_INT);
-        return $stmt->execute();
-    }
-    
     public function getTravelers() {
         $sql = "SELECT *
                 FROM Traveler";

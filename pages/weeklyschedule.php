@@ -3,14 +3,14 @@
     <form method="POST" action="pages/processing/processing_weeklyschedule.php">
         <p>City - departure <input type="text" name="Departure" placeholder="City - departure"></p>
         <p>City - destination <input type="text" name="Destination" placeholder="City - destination"></p>
-        <p>Day <select name="Day">
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
-                <option value="Sunday">Sunday</option>
+        <p>Day <select>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
             </select>
         </p>
         <p>Departure time (HH:MM) <input type="time" name="DepartureTime" placeholder="Departure time (HH:MM)"></p>

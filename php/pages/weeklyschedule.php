@@ -54,7 +54,7 @@ include "php/classes/DatabaseInterface.class.php";
          foreach ($schedules as $schedule) 
          {
              echo("<tr>"
-                 .  "<td>" . "<input type='radio' name='id' value='" . $schedule['WeeklyScheduleID']. "'>" . "</td>"
+                 .  "<td>" . "<input type='checkbox' name='id[]' value='" . $schedule['WeeklyScheduleID']. "'>" . "</td>"
                  .  "<td>" . $schedule['Departure'] . "</td>"
                  .  "<td>" . $schedule['Destination'] . "</td>"
                  .  "<td>" . $schedule['Day'] . "</td>"

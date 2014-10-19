@@ -1,5 +1,4 @@
 <?php
-var_dump($_POST);
 
 require_once("../../classes/DatabaseInterface.class.php");
 
@@ -23,11 +22,14 @@ if (isset($_POST['mode']) && $_POST['mode'] == "addweeklyschedule") {
     }
 }
 if (isset($_POST['mode']) && $_POST['mode'] == "removeweeklyschedule") {
-    $id = $_POST['id'];
+    $idArray = $_POST['id'];
+    $resultArray = array();
     
-    $result2 = $dbh->removeWeeklySchedule($id);
-    
-    if ($result2) {
+    foreach ($idArray as $id => $value) {
+        $result = $dbh->removeWeeklySchedule($value);
+        array_push($resultArray, $result);
+    }
+    if (!in_array(0)) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
         die();

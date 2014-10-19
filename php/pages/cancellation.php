@@ -1,8 +1,8 @@
 <?php
-include("classes/DatabaseInterface.class.php");
+include("php/classes/DatabaseInterface.class.php");
 ?>
 
-<form action="pages/processing/processing_booking.php" method="post">
+<form action="php/pages/processing/processing_booking.php" method="post">
     <select size="2">
     <?php
     $dbh= new DatabaseInterface();

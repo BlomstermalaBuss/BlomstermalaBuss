@@ -23,10 +23,10 @@
             
                 $get = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_STRING);
                 if (isset($get)) {
-                    require_once("pages/" . $get . ".php");
+                    require_once("php/pages/" . $get . ".php");
                 }
                 else {
-                    require_once("pages/home.php");
+                    require_once("php/pages/home.php");
                 }
             
             ?>

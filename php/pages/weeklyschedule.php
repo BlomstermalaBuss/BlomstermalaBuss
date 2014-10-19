@@ -1,6 +1,6 @@
 <div class="formDiv">
     <h1>Add weekly schedule</h1>
-    <form method="POST" action="pages/processing/processing_weeklyschedule.php">
+    <form method="POST" action="php/pages/processing/processing_weeklyschedule.php">
         <p>City - departure <input type="text" name="Departure" placeholder="City - departure"></p>
         <p>City - destination <input type="text" name="Destination" placeholder="City - destination"></p>
         <p>Day <select name="Day">

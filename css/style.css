@@ -15,7 +15,7 @@ html {
 }
 
 #container {
-    width: 600px;
+    width: 40%;
     margin: 0 auto;
     border: 1px dotted #CCC;
 }
@@ -26,12 +26,14 @@ html {
     margin: 10px;
 }
 table {
+    table-layout: fixed;
     border-collapse: separate;
     border-spacing: 10px 5px;
 }
 
 table.weekly th, table.weekly td, table.weekly
 {
+    width: 100%;
     border: 1px solid black;
     border-collapse: collapse;
     border-left: none;
@@ -49,4 +51,8 @@ p {
       
 .border {
     border-top: 1px dotted #CCC;
+}
+
+#addweeklyschedule, #editweeklyschedule, #removeweeklyschedule {
+    display: none;
 }

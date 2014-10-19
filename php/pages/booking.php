@@ -3,8 +3,8 @@
            <?php 
            include "php/classes/DatabaseInterface.class.php";
            
-           $dbh = new DatabaseInterface();        
-           $result1 = $dbh->getWeeklySchedule();
+           $dbh = new DatabaseInterface();
+           $result1 = $dbh->getWeeklySchedules();
            ?>    
    
            <table class="weekly">

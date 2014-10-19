@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Blomstermåla Buss Bokningssystem</title>
+        <title>Blomstermåla Buss Booking System</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/style.css"/>
         <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -12,10 +12,10 @@
             <div id="menu">
                 <table>
                     <tr>
-                        <td><a href="?p=home">Hem</a></td>
-                        <td><a href="?p=booking">Boka resor</a></td>
-                        <td><a href="?p=cancellation">Avbokning</a></td>
-                        <td><a href="?p=weeklyschedule">Hantera veckoschema</a></td>
+                        <td><a href="?p=home">Home</a></td>
+                        <td><a href="?p=booking">Book travel</a></td>
+                        <td><a href="?p=cancellation">Cancellation</a></td>
+                        <td><a href="?p=weeklyschedule">Manage weekly schedules</a></td>
                     </tr>
                 </table>
             </div>

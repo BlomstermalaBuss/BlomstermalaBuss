@@ -26,7 +26,7 @@ include "php/classes/DatabaseInterface.class.php";
             <p>Price <input type="text" name="Price" placeholder="Price"></p>
             <p>Max traveler amount <input type="number" name="MaxTravelerAmount" placeholder="Max traveler amount"></p>
             <input type="hidden" name="mode" value="addweeklyschedule">
-            <p><input type="submit" text="Submit"></p>
+            <p><input type="submit" value="Add weekly schedule"></p>
         </form>
     </div>
 </div>
@@ -66,6 +66,6 @@ include "php/classes/DatabaseInterface.class.php";
          ?>   
         </table>
         <input type="hidden" name="mode" value="removeweeklyschedule">
-        <p><input type="submit" onclick="confirm('Are you sure you want to delete this schedule?')" text="Submit"></p>
+        <p><input type="submit" onclick="confirm('Are you sure you want to delete the selected schedule(s)?')" value="Remove weekly schedule(s)"></p>
     </form>
 </div>

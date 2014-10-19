@@ -53,6 +53,6 @@ p {
     border-top: 1px dotted #CCC;
 }
 
-#addweeklyschedule, #editweeklyschedule, #removeweeklyschedule {
+#editweeklyschedule, #removeweeklyschedule {
     display: none;
 }

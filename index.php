@@ -4,6 +4,8 @@
         <title>Blomstermåla Buss Bokningssystem</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/style.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+        <script type="text/javascript" src="js/showdiv.js"></script>
     </head>
     <body>
         <div id="container">

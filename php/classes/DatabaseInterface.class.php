@@ -93,10 +93,20 @@ class DatabaseInterface {
         return $stmt->execute();
     }
     
-    public function getWeeklySchedule() {
+    public function getWeeklySchedules() {
         $sql = "SELECT * 
                 FROM WeeklySchedule";
         $stmt = $this->dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    public function getWeeklySchedule($id) {
+        $sql = "SELECT * 
+                FROM WeeklySchedule
+                WHERE WeeklyScheduleID = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }

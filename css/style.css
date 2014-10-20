@@ -13,7 +13,9 @@ License: none (public domain)
 html {
     background-color: #FFF;
 }
-
+p {
+    margin: 4px;
+}
 #container {
     width: 40%;
     margin: 0 auto;
@@ -23,14 +25,15 @@ html {
     margin: 5px;
 }
 #textcontainer {
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 table {
     table-layout: fixed;
     border-collapse: separate;
     border-spacing: 10px 5px;
 }
-
 table.weekly th, table.weekly td, table.weekly
 {
     width: 100%;
@@ -39,20 +42,12 @@ table.weekly th, table.weekly td, table.weekly
     border-left: none;
     border-right: none;
 }
-
 table.weekly th, table.weekly td {
     padding: 5px;
     text-align: left;
 }
-
-p {
-    margin: 4px;
-}
-      
 .border {
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-top: 1px dotted #CCC;
-}
-
-#editweeklyschedule, #removeweeklyschedule {
-    display: none;
 }

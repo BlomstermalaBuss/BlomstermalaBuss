@@ -5,9 +5,9 @@ require_once("php/classes/DatabaseInterface.class.php");
 ?>
 <table>
     <tr>
-        <td><a href="?p=weeklyschedule&wsmode=add">Add weekly schedule</a></td>
-        <td><a href="?p=weeklyschedule&wsmode=edit">Edit weekly schedule</a></td>
-        <td><a href="?p=weeklyschedule&wsmode=remove">Remove weekly schedule</a></td>
+        <td><a href="?p=weeklyschedule&amp;wsmode=add">Add weekly schedule</a></td>
+        <td><a href="?p=weeklyschedule&amp;wsmode=edit">Edit weekly schedule</a></td>
+        <td><a href="?p=weeklyschedule&amp;wsmode=remove">Remove weekly schedule</a></td>
     </tr>
 </table>
 <div class="border"></div>

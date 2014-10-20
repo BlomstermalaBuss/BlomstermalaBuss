@@ -111,6 +111,23 @@ class DatabaseInterface {
         return $stmt->fetchAll();
     }
     
+    public function editWeeklySchedule($id, $departure, $destination, $day, $departureTime, $arrivalTime, $price, $maxTravelerAmount) {
+        $sql = "UPDATE WeeklySchedule
+                SET Departure = :departure, Destination = :destination, Day = :day, DepartureTime = :departureTime,
+                    ArrivalTime = :arrivalTime, Price = :price, MaxTravelerAmount = :maxTravelerAmount
+                WHERE WeeklyScheduleID = :id";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':departure', $departure, PDO::PARAM_STR);
+        $stmt->bindValue(':destination', $destination, PDO::PARAM_STR);
+        $stmt->bindValue(':day', $day, PDO::PARAM_STR);
+        $stmt->bindValue(':departureTime', $departureTime, PDO::PARAM_STR);
+        $stmt->bindValue(':arrivalTime', $arrivalTime, PDO::PARAM_STR);
+        $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+        $stmt->bindValue(':maxTravelerAmount', $maxTravelerAmount, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+    
     public function removeWeeklySchedule($id) {
         $sql = "DELETE FROM WeeklySchedule
                 WHERE WeeklyScheduleID = :id";

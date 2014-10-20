@@ -16,6 +16,13 @@ html {
 p {
     margin: 4px;
 }
+a {
+    color: blue;
+    text-decoration: none; /* no underline */
+}
+a:hover {
+    text-decoration: underline;
+}
 #container {
     width: 40%;
     margin: 0 auto;

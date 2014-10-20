@@ -158,6 +158,7 @@ class DatabaseInterface {
         $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
         $stmt->bindValue(':street', $street, PDO::PARAM_STR);
         $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
     

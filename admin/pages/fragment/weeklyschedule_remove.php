@@ -1,5 +1,5 @@
 <div id="removeweeklyschedule">
-    <form action="php/pages/processing/processing_weeklyschedule.php" method="post">
+    <form action="processing/processing_weeklyschedule.php" method="post">
         <?php 
         $dbh = new DatabaseInterface();
         $schedules = $dbh->getWeeklySchedules();

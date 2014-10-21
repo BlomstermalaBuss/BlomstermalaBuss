@@ -1,5 +1,5 @@
 <?php
-require_once("php/classes/DatabaseInterface.class.php");
+require_once("../php/classes/DatabaseInterface.class.php");
 
 
 ?>
@@ -14,9 +14,9 @@ require_once("php/classes/DatabaseInterface.class.php");
 <?php
 $get = filter_input(INPUT_GET, 'wsmode', FILTER_SANITIZE_STRING);
 if (isset($get)) {
-    require_once("php/pages/fragment/weeklyschedule_" . $get . ".php");
+    require_once("fragment/weeklyschedule_" . $get . ".php");
 }
 else {
-    require_once("php/pages/fragment/weeklyschedule_add.php");
+    require_once("fragment/weeklyschedule_add.php");
 }
 ?>

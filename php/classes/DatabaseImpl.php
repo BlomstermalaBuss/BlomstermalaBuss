@@ -1,28 +1,18 @@
 ﻿<?php
 
 include("DatabaseInterface.class.php");
+require_once("PasswordGenerator.class.php");
 	
 try {
     $dbh = new DatabaseInterface();
 
-    $result1 = $dbh->getWeeklySchedule();
-    echo "<table>";
-    foreach ($result1 as $schedule) {
-            echo "<tr>";
-                echo "<td>" . $schedule['Departure']. "</td>";
-                echo "<td>" . $schedule['Destination'] . "</td>";
-                echo "<td>" . $schedule['Day'] . "</td>";
-                echo "<td>" . $schedule['DepartureTime'] . "</td>";
-                echo "<td>" . $schedule['ArrivalTime'] . "</td>";
-                echo "<td>" . $schedule['Price'] . "</td>";
-                echo "<td>" . $schedule['MaxTravelerAmount'] . "</td>";
-            echo "</tr>";
-    }
-    echo "</table>";
-    
     try {
-        //$res = $dbh->addTraveler("Daniel Nilsson", "19860411", "Svedala", "12345", "Gulvitegatan 3", "Sweden");
-        //echo $res;
+        $username = "Admin";
+        $password = "1";
+        
+        $pwGenerator = new PasswordGenerator();
+        $password = $pwGenerator->generatePassword($password);
+        $result = $dbh->addAdministrator($username, $password);
     } catch (Exception $e) {
         echo $e->getMessage();
     }

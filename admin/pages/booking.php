@@ -1,7 +1,7 @@
-<form action="php/pages/processing/processing_booking.php" method="post">
+<form action="../php/pages/processing/processing_booking.php" method="post">
 
     <?php 
-    include "php/classes/DatabaseInterface.class.php";
+    include "../php/classes/DatabaseInterface.class.php";
 
     $dbh = new DatabaseInterface();
     $result1 = $dbh->getWeeklySchedules();

@@ -14,6 +14,30 @@ class DatabaseInterface {
                            . 'charset=utf8', $dbConf->getUsername(), $dbConf->getPassword());
     }
 
+    ///////////////////////////////////////////////////
+    /// --- DATABASE METHODS FOR ADMINISTRATOR --- ////
+    ///////////////////////////////////////////////////
+    public function addAdministrator($username, $password) {
+        $sql = "INSERT INTO Administrator (Username, Password)
+                VALUES (:username, :password)";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+    
+    public function getAdministratorByUsernameAndPassword($username, $password) {
+        $sql = "SELECT * 
+                FROM Administrator
+                WHERE Username = :username
+                AND Password = :password";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
     //////////////////////////////////////////////
     /// --- DATABASE METHODS FOR BOOKINGS --- ////
     //////////////////////////////////////////////

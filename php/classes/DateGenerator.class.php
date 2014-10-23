@@ -9,7 +9,7 @@
  */
 class DateGenerator {
     
-    function calculateDay($day, $numberOfDays) {
+    function calculateDates($day, $numberOfDays) {
         $arr = array();
         for($i = 0; $i < $numberOfDays; $i++) {
             if ($i == 0) {

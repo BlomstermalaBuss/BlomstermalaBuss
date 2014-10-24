@@ -13,7 +13,14 @@ class DatabaseInterface {
                            . 'dbname=' . $dbConf->getDatabase() . ';'
                            . 'charset=utf8', $dbConf->getUsername(), $dbConf->getPassword());
     }
-
+    
+    ////////////////////////////////
+    /// --- UTILITY METHODS --- ////
+    ////////////////////////////////
+    public function getDbh() {
+        return $this->dbh;
+    }
+    
     ///////////////////////////////////////////////////
     /// --- DATABASE METHODS FOR ADMINISTRATOR --- ////
     ///////////////////////////////////////////////////
@@ -84,7 +91,8 @@ class DatabaseInterface {
     
     public function removeBookingByTravelerIdAndTravelId($travelerId, $travelId) {
         $sql = "DELETE FROM Booking
-                WHERE TravelerID = :travelerId AND TravelID = :travelId";
+                WHERE TravelerID = :travelerId 
+                AND TravelID = :travelId";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_INT);
         $stmt->bindValue(':travelId', $travelId, PDO::PARAM_INT);
@@ -132,7 +140,7 @@ class DatabaseInterface {
         return $stmt->fetch();
     }
     
-    public function getTravelByWeeklyScheduleIDAndDate($id, $date) {
+    public function getTravelByWeeklyScheduleIdAndDate($id, $date) {
         $sql = "SELECT * 
                 FROM Travel
                 WHERE WeeklyScheduleID = :id
@@ -308,10 +316,6 @@ class DatabaseInterface {
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
-    }
-    
-    public function getDbh() {
-        return $this->dbh;
     }
 
 }

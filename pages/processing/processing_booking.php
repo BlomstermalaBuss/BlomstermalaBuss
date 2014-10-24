@@ -40,7 +40,7 @@ if(isset($_POST['mode'])) {
             }
         }
         
-        $result = $dbh->getTravelByWeeklyScheduleIDAndDate($id, $date);
+        $result = $dbh->getTravelByWeeklyScheduleIdAndDate($id, $date);
         if ($result == null) {
             $dbh->addTravel($date, $id);
             $lastInsertId = $dbh->getDbh()->lastInsertId();

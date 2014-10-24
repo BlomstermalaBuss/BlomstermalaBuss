@@ -309,5 +309,9 @@ class DatabaseInterface {
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+    
+    public function getDbh() {
+        return $this->dbh;
+    }
 
 }

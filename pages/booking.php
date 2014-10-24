@@ -38,9 +38,10 @@
     <?php } ?>
     
     <?php if(isset($_SESSION['traveltobook'])) {
-        
-        echo '<p><select name="date">';
-        foreach ($_SESSION['dates'] as $date) {
+        $session = $_SESSION;
+        unset($_SESSION['traveltobook']);
+        echo '<p>Which date would you like to book the travel? <select name="date">';
+        foreach ($session['dates'] as $date) {
             ?>
             <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
             <?php
@@ -49,7 +50,6 @@
         </select></p>
         <input type="hidden" name="mode" value="addbooking_dateselected">
         <?php
-        unset($_SESSION);
     }
     ?>
     <input type="submit">

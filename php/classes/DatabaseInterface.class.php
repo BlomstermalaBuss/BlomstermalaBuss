@@ -186,6 +186,26 @@ class DatabaseInterface {
         return $stmt->execute();
     }
     
+    public function getTravelers() {
+        $sql = "SELECT *
+                FROM Traveler";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    public function getTravelerByUsernameAndPassword($username, $password) {
+        $sql = "SELECT * 
+                FROM Traveler
+                WHERE Username = :username
+                AND Password = :password";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+    
     public function getTraveler($id) {
         $sql = "SELECT *
                 FROM Traveler
@@ -194,14 +214,6 @@ class DatabaseInterface {
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
-    }
-    
-    public function getTravelers() {
-        $sql = "SELECT *
-                FROM Traveler";
-        $stmt = $this->dbh->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
     }
     
     public function getTravelersByTravelId($id) {

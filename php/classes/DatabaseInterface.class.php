@@ -129,7 +129,19 @@ class DatabaseInterface {
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetc();
+        return $stmt->fetch();
+    }
+    
+    public function getTravelByWeeklyScheduleIDAndDate($id, $date) {
+        $sql = "SELECT * 
+                FROM Travel
+                WHERE WeeklyScheduleID = :id
+                AND Date = :date";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
     }
     
     public function getTravelsByTravelerId($id) {

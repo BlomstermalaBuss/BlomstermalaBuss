@@ -1,4 +1,4 @@
-<form action="processing/processing_booking.php" method="post">
+<form action="pages/processing/processing_booking.php" method="post">
 
     <?php 
     include "php/classes/DatabaseInterface.class.php";
@@ -21,7 +21,7 @@
      foreach ($result1 as $schedule) 
      {
          echo("<tr>"
-             .  "<td>" . "<input type='radio' name='radio' value='" . $schedule['WeeklyScheduleID']. "'>" . "</td>"
+             .  "<td>" . "<input type='radio' name='weeklyid' value='" . $schedule['WeeklyScheduleID']. "'>" . "</td>"
              .  "<td>" . $schedule['Departure'] . "</td>"
              .  "<td>" . $schedule['Destination'] . "</td>"
              .  "<td>" . $schedule['Day'] . "</td>"
@@ -29,7 +29,29 @@
              .  "<td>" . $schedule['ArrivalTime'] . "</td>"
              .  "<td>" . $schedule['Price'] . "</td>"
      . "</tr>");
+     $_SESSION['travels'] = $result1;
      }
-     ?>   
-    </table>     
+     ?>
+    </table>
+    <?php if(!isset($_SESSION['traveltobook'])) { ?>
+    <input type="hidden" name="mode" value="addbooking">
+    <?php } ?>
+    
+    <?php if(isset($_SESSION['traveltobook'])) {
+        
+        echo '<p><select name="date">';
+        foreach ($_SESSION['dates'] as $date) {
+            ?>
+            <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
+            <?php
+        }
+        ?>
+        </select></p>
+        <input type="hidden" name="mode" value="addbooking_dateselected">
+        <?php
+        unset($_SESSION);
+    }
+    ?>
+    <input type="submit">
+
  </form>

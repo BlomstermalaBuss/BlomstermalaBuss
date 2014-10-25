@@ -153,12 +153,16 @@ class DatabaseInterface {
     }
     
     public function getTravelsByTravelerId($id) {
-        $sql = "SELECT *
+        $sql = "SELECT Travel.TravelID AS TravelID, WeeklySchedule.WeeklyScheduleID AS WeeklyScheduleID, WeeklySchedule.Departure AS Departure, 
+                       WeeklySchedule.Destination AS Destination, WeeklySchedule.Day AS Day, WeeklySchedule.DepartureTime as DepartureTime, 
+                       WeeklySchedule.ArrivalTime AS ArrivalTime, WeeklySchedule.Price AS Price
                 FROM Travel
                 INNER JOIN Booking
-                ON Travel.TravelID = Booking.TravelerID
+                ON Travel.TravelID = Booking.TravelID
                 INNER JOIN Traveler
-                ON Booking.TravelID = Traveler.TravelerID
+                ON Booking.TravelerID = Traveler.TravelerID
+                INNER JOIN WeeklySchedule
+                ON Travel.WeeklyScheduleID = WeeklySchedule.WeeklyScheduleID
                 WHERE Traveler.TravelerID = :id";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);

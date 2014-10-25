@@ -15,6 +15,7 @@
         <table class="weekly">
         <tr>
             <th>Cancel booking</th>
+            <th>Date</th>
             <th>Departure</th>
             <th>Destination</th>
             <th>Day</th>
@@ -23,10 +24,11 @@
             <th>Price</th>
         </tr>
         <?php
-        foreach ($travels as $travel) 
+        foreach ($travels as $travel)
         {
             echo("<tr>"
                 .  "<td>" . "<input type='radio' name='travelid' value='" . $travel['TravelID']. "'>" . "</td>"
+                .  "<td>" . $travel['Date'] . "</td>"
                 .  "<td>" . $travel['Departure'] . "</td>"
                 .  "<td>" . $travel['Destination'] . "</td>"
                 .  "<td>" . $travel['Day'] . "</td>"

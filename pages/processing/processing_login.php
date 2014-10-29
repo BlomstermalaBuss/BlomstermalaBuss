@@ -1,5 +1,6 @@
 <?php
 
+ob_start();
 session_start();
 
 require_once("../../php/classes/DatabaseInterface.class.php");
@@ -18,7 +19,7 @@ if (isset($_POST['username'])) {
     
     if ($result != null) {
         var_dump($result);
-        echo $_SESSION['user'] = $result['Username'];
+        echo $_SESSION['name'] = $result['Name'];
         echo $_SESSION['id'] = $result['TravelerID'];
         var_dump($_SESSION);
         //die();

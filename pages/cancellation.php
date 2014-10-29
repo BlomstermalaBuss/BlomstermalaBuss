@@ -5,7 +5,6 @@
 
     $dbh = new DatabaseInterface();
     $travels = $dbh->getTravelsByTravelerId($_SESSION['id']);
-    var_dump($travels);
     ?>
 
 

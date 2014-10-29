@@ -1,5 +1,6 @@
 <?php
 
+    ob_start();
     session_start();
     
 ?>
@@ -12,6 +13,11 @@
     </head>
     <body>
         <div id="container">
+            <?php
+            if (isset($_SESSION['name'])) {
+                include("pages/fragment/user.php");
+            }
+            ?>
             <div id="menu">
                 <table>
                     <tr>
@@ -24,15 +30,8 @@
             <div class="border"></div>
             <div id="textcontainer">
             <?php
-            if (!isset($_SESSION['user'])) {
-                ?>
-                <p>You must be logged in to use this page.</p>
-                <form method="POST" action="pages/processing/processing_login.php">
-                    <label>Username</label><input name="username" type="text">
-                    <label>Password</label><input name="password" type="password">
-                    <input type="submit">
-                </form>
-                <?php
+            if (!isset($_SESSION['name'])) {
+                require_once("pages/fragment/login.php");
             } else {
                 $get = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_STRING);
                 if (isset($get)) {

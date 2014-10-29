@@ -31,6 +31,9 @@ a:hover {
 #menu {
     margin: 5px;
 }
+#user {
+    float: right;
+}
 #textcontainer {
     margin-left: 10px;
     margin-right: 10px;

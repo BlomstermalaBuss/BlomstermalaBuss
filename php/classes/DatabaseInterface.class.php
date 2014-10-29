@@ -257,9 +257,9 @@ class DatabaseInterface {
     //////////////////////////////////////////////
     /// --- DATABASE METHODS FOR TRAVELER --- ////
     //////////////////////////////////////////////
-    public function addTraveler($name, $socialSecurityNr, $city, $zipcode, $street, $country) {
-        $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, City, Zipcode, Street, Country)
-                VALUES (:name, :socialSecurityNr, :city, :zipcode, :street, :country)";
+    public function addTraveler($name, $socialSecurityNr, $city, $zipcode, $street, $country, $username, $password) {
+        $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, City, Zipcode, Street, Country, Username, Password)
+                VALUES (:name, :socialSecurityNr, :city, :zipcode, :street, :country, :username, :password)";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -268,6 +268,8 @@ class DatabaseInterface {
             $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
             $stmt->bindValue(':street', $street, PDO::PARAM_STR);
             $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+            $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
             return $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();

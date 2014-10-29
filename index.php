@@ -30,15 +30,19 @@
             <div class="border"></div>
             <div id="textcontainer">
             <?php
-            if (!isset($_SESSION['name'])) {
-                require_once("pages/fragment/login.php");
+            if (isset($_GET['p']) && $_GET['p'] == "register") {
+                include("pages/fragment/register.php");
             } else {
-                $get = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_STRING);
-                if (isset($get)) {
-                    require_once("pages/" . $get . ".php");
-                }
-                else {
-                    require_once("pages/home.php");
+                if (!isset($_SESSION['name'])) {
+                    require_once("pages/fragment/login.php");
+                } else {
+                    $get = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_STRING);
+                    if (isset($get)) {
+                        require_once("pages/" . $get . ".php");
+                    }
+                    else {
+                        require_once("pages/home.php");
+                    }
                 }
             }
             ?>

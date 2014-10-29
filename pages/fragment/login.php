@@ -4,3 +4,4 @@
     <p>Password <input name="password" type="password"></p>
     <p><input type="submit"></p>
 </form>
+<p>Don't have an account? <a href="?p=register">Create an account.</a></p>

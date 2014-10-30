@@ -362,6 +362,21 @@ class DatabaseInterface {
         }
     }
     
+    public function getTravelerAmountByTravelID($id) {
+        $sql = "SELECT COUNT(TravelerID)
+                FROM Booking 
+                WHERE TravelID = :id";
+        try {
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchColumn(0);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+    
     public function removeTraveler($id) {
         $sql = "DELETE FROM Traveler
                 WHERE TravelerID = :id";

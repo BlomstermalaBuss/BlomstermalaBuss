@@ -37,16 +37,21 @@ if(isset($_POST['mode'])) {
         foreach($travels as $travel) {
             if($travel["WeeklyScheduleID"] == $travel_saved["WeeklyScheduleID"]) {
                 $id = $travel["WeeklyScheduleID"];
+                $maxTravelerAmount = $travel['MaxTravelerAmount'];
             }
         }
         
         $result = $dbh->getTravelByWeeklyScheduleIdAndDate($id, $date);
         if ($result == null) {
-            $dbh->addTravel($date, $id);
-            $lastInsertId = $dbh->getDbh()->lastInsertId();
-            $dbh->addBooking($_SESSION['id'], $lastInsertId);
+                $dbh->addTravel($date, $id);
+                $lastInsertId = $dbh->getDbh()->lastInsertId();
+                $dbh->addBooking($_SESSION['id'], $lastInsertId);
         } else if ($result != null) {
-            $dbh->addBooking($_SESSION['id'], $result['TravelID']);
+            if (!$dbh->getTravelerAmountByTravelID($result['TravelID']) >= $maxTravelerAmount) {
+                $dbh->addBooking($_SESSION['id'], $result['TravelID']);
+            } else {
+                $_SESSION['error'] = "The max amount of travelers (" . $maxTravelerAmount . ") are already booked on this travel.";
+            }
         }
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }

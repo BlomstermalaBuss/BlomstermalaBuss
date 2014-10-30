@@ -1,3 +1,9 @@
+<?php 
+if(isset($_SESSION['error'])) {
+    echo "<p>" . $_SESSION['error'] . "</p>";
+    unset($_SESSION['error']);
+}
+?>
 <form action="pages/processing/processing_booking.php" method="post">
 
     <?php 

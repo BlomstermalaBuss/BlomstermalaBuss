@@ -1,6 +1,5 @@
 <?php
 
-echo "hello";
 include('../../php/classes/DatabaseInterface.class.php');
 include('../../php/classes/PasswordGenerator.class.php');
 
@@ -16,7 +15,6 @@ if(isset($_POST)) {
     $country = $_POST['Country'];
     $username = $_POST['Username'];
     $password = $pwGenerator->generatePassword($_POST['Password']);
-    echo $password;
     
     echo $result = $dbh->addTraveler($name, $socialSecurityNr, $city, $zipcode, $street, $country, $username, $password);
     if ($result) {

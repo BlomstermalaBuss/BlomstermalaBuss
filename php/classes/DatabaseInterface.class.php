@@ -21,6 +21,25 @@ class DatabaseInterface {
         return $this->dbh;
     }
     
+    /////////////////////////////////////////////
+    /// --- DATABASE METHODS FOR ADDRESS --- ////
+    /////////////////////////////////////////////
+    public function addAddress($city, $zipcode, $street, $country) {
+        $sql = "INSERT INTO Address (City, Zipcode, Street, Country)
+                VALUES (:city, :zipcode, :street, :country)";
+        try {
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+            $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
+            $stmt->bindValue(':street', $street, PDO::PARAM_STR);
+            $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+    
     ///////////////////////////////////////////////////
     /// --- DATABASE METHODS FOR ADMINISTRATOR --- ////
     ///////////////////////////////////////////////////
@@ -258,26 +277,27 @@ class DatabaseInterface {
     /// --- DATABASE METHODS FOR TRAVELER --- ////
     //////////////////////////////////////////////
     public function addTraveler($name, $socialSecurityNr, $city, $zipcode, $street, $country, $username, $password) {
-        $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, City, Zipcode, Street, Country, Username, Password)
-                VALUES (:name, :socialSecurityNr, :city, :zipcode, :street, :country, :username, :password)";
+        $sql = "INSERT INTO Traveler (Name, SocialSecurityNr, Username, Password)
+                VALUES (:name, :socialSecurityNr, :username, :password)";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
             $stmt->bindValue(':socialSecurityNr', $socialSecurityNr, PDO::PARAM_STR);
-            $stmt->bindValue(':city', $city, PDO::PARAM_STR);
-            $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
-            $stmt->bindValue(':street', $street, PDO::PARAM_STR);
-            $stmt->bindValue(':country', $country, PDO::PARAM_STR);
             $stmt->bindValue(':username', $username, PDO::PARAM_STR);
             $stmt->bindValue(':password', $password, PDO::PARAM_STR);
-            return $stmt->execute();
+            $stmt->execute();
+            echo $travelerId = $this->dbh->lastInsertId();
+            $this->addAddress($city, $zipcode, $street, $country);
+            echo $addressId = $this->dbh->lastInsertId();
+            $this->addTravelerAddress($travelerId, $addressId);
+            return true;
         } catch (Exception $e) {
             echo $e->getMessage();
             die();
         }
     }
     
-    public function editTraveler($id, $name, $socialSecurityNr, $city, $zipcode, $street, $country) {
+    /*public function editTraveler($id, $name, $socialSecurityNr, $city, $zipcode, $street, $country) {
         $sql = "UPDATE Traveler
                 SET Name = :name, SocialSecurityNr = :socialSecurityNr, City = :city, Zipcode = :zipcode, 
                     Street = :street, Country = :country;
@@ -296,11 +316,15 @@ class DatabaseInterface {
             echo $e->getMessage();
             die();
         }
-    }
+    }*/
     
     public function getTravelers() {
         $sql = "SELECT *
-                FROM Traveler";
+                FROM Traveler
+                INNER JOIN TravelerAddress
+                ON Traveler.TravelerID = TravelerAddress.TravelerID
+                INNER JOIN Address
+                ON TravelerAddress.AddressID = Address.AddressID";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
@@ -314,6 +338,10 @@ class DatabaseInterface {
     public function getTravelerByUsernameAndPassword($username, $password) {
         $sql = "SELECT * 
                 FROM Traveler
+                INNER JOIN TravelerAddress
+                ON Traveler.TravelerID = TravelerAddress.TravelerID
+                INNER JOIN Address
+                ON TravelerAddress.AddressID = Address.AddressID
                 WHERE Username = :username
                 AND Password = :password";
         try {
@@ -331,6 +359,10 @@ class DatabaseInterface {
     public function getTraveler($id) {
         $sql = "SELECT *
                 FROM Traveler
+                INNER JOIN TravelerAddress
+                ON Traveler.TravelerID = TravelerAddress.TravelerID
+                INNER JOIN Address
+                ON TravelerAddress.AddressID = Address.AddressID
                 WHERE TravelerID = :id";
         try {
             $stmt = $this->dbh->prepare($sql);
@@ -350,6 +382,10 @@ class DatabaseInterface {
                 ON Traveler.TravelerID = Booking.TravelerID
                 INNER JOIN Travel
                 ON Booking.TravelID = Travel.TravelID
+                INNER JOIN TravelerAddress
+                ON Traveler.TravelerID = TravelerAddress.TravelerID
+                INNER JOIN Address
+                ON TravelerAddress.AddressID = Address.AddressID
                 WHERE Travel.TravelID = :id";
         try {
             $stmt = $this->dbh->prepare($sql);
@@ -362,7 +398,7 @@ class DatabaseInterface {
         }
     }
     
-    public function getTravelerAmountByTravelID($id) {
+    public function getTravelerAmountByTravelId($id) {
         $sql = "SELECT COUNT(TravelerID)
                 FROM Booking 
                 WHERE TravelID = :id";
@@ -383,6 +419,23 @@ class DatabaseInterface {
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+    
+    /////////////////////////////////////////////////////
+    /// --- DATABASE METHODS FOR TRAVELERADDRESS --- ////
+    /////////////////////////////////////////////////////
+    public function addTravelerAddress($travelerId, $addressId) {
+        $sql = "INSERT INTO TravelerAddress (TravelerID, AddressID)
+                VALUES (:travelerId, :addressId)";
+        try {
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_INT);
+            $stmt->bindValue(':addressId', $addressId, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();

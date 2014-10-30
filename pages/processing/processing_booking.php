@@ -47,7 +47,7 @@ if(isset($_POST['mode'])) {
                 $lastInsertId = $dbh->getDbh()->lastInsertId();
                 $dbh->addBooking($_SESSION['id'], $lastInsertId);
         } else if ($result != null) {
-            if (!$dbh->getTravelerAmountByTravelID($result['TravelID']) >= $maxTravelerAmount) {
+            if (!$dbh->getTravelerAmountByTravelId($result['TravelID']) >= $maxTravelerAmount) {
                 $dbh->addBooking($_SESSION['id'], $result['TravelID']);
             } else {
                 $_SESSION['error'] = "The max amount of travelers (" . $maxTravelerAmount . ") are already booked on this travel.";

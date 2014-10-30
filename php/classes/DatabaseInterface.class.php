@@ -24,11 +24,12 @@ class DatabaseInterface {
     /////////////////////////////////////////////
     /// --- DATABASE METHODS FOR ADDRESS --- ////
     /////////////////////////////////////////////
-    public function addAddress($city, $zipcode, $street, $country) {
-        $sql = "INSERT INTO Address (City, Zipcode, Street, Country)
-                VALUES (:city, :zipcode, :street, :country)";
+    public function addAddress($travelerId, $city, $zipcode, $street, $country) {
+        $sql = "INSERT INTO Address (TravelerID, City, Zipcode, Street, Country)
+                VALUES (:travelerId, :city, :zipcode, :street, :country)";
         try {
             $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_STR);
             $stmt->bindValue(':city', $city, PDO::PARAM_STR);
             $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
             $stmt->bindValue(':street', $street, PDO::PARAM_STR);
@@ -287,9 +288,7 @@ class DatabaseInterface {
             $stmt->bindValue(':password', $password, PDO::PARAM_STR);
             $stmt->execute();
             echo $travelerId = $this->dbh->lastInsertId();
-            $this->addAddress($city, $zipcode, $street, $country);
-            echo $addressId = $this->dbh->lastInsertId();
-            $this->addTravelerAddress($travelerId, $addressId);
+            $this->addAddress($travelerId, $city, $zipcode, $street, $country);
             return true;
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -321,10 +320,8 @@ class DatabaseInterface {
     public function getTravelers() {
         $sql = "SELECT *
                 FROM Traveler
-                INNER JOIN TravelerAddress
-                ON Traveler.TravelerID = TravelerAddress.TravelerID
                 INNER JOIN Address
-                ON TravelerAddress.AddressID = Address.AddressID";
+                ON Traveler.TravelerID = Address.TravelerID";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
@@ -338,10 +335,8 @@ class DatabaseInterface {
     public function getTravelerByUsernameAndPassword($username, $password) {
         $sql = "SELECT * 
                 FROM Traveler
-                INNER JOIN TravelerAddress
-                ON Traveler.TravelerID = TravelerAddress.TravelerID
                 INNER JOIN Address
-                ON TravelerAddress.AddressID = Address.AddressID
+                ON Traveler.TravelerID = Address.TravelerID
                 WHERE Username = :username
                 AND Password = :password";
         try {
@@ -359,10 +354,8 @@ class DatabaseInterface {
     public function getTraveler($id) {
         $sql = "SELECT *
                 FROM Traveler
-                INNER JOIN TravelerAddress
-                ON Traveler.TravelerID = TravelerAddress.TravelerID
                 INNER JOIN Address
-                ON TravelerAddress.AddressID = Address.AddressID
+                ON Traveler.TravelerID = Address.TravelerID
                 WHERE TravelerID = :id";
         try {
             $stmt = $this->dbh->prepare($sql);
@@ -382,10 +375,8 @@ class DatabaseInterface {
                 ON Traveler.TravelerID = Booking.TravelerID
                 INNER JOIN Travel
                 ON Booking.TravelID = Travel.TravelID
-                INNER JOIN TravelerAddress
-                ON Traveler.TravelerID = TravelerAddress.TravelerID
                 INNER JOIN Address
-                ON TravelerAddress.AddressID = Address.AddressID
+                ON Traveler.TravelerID = Address.TravelerID
                 WHERE Travel.TravelID = :id";
         try {
             $stmt = $this->dbh->prepare($sql);
@@ -419,23 +410,6 @@ class DatabaseInterface {
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            return $stmt->execute();
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            die();
-        }
-    }
-    
-    /////////////////////////////////////////////////////
-    /// --- DATABASE METHODS FOR TRAVELERADDRESS --- ////
-    /////////////////////////////////////////////////////
-    public function addTravelerAddress($travelerId, $addressId) {
-        $sql = "INSERT INTO TravelerAddress (TravelerID, AddressID)
-                VALUES (:travelerId, :addressId)";
-        try {
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindValue(':travelerId', $travelerId, PDO::PARAM_INT);
-            $stmt->bindValue(':addressId', $addressId, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();

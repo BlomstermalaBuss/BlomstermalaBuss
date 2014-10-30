@@ -43,9 +43,9 @@ if(isset($_POST['mode'])) {
         
         $result = $dbh->getTravelByWeeklyScheduleIdAndDate($id, $date);
         if ($result == null) {
-                $dbh->addTravel($date, $id);
-                $lastInsertId = $dbh->getDbh()->lastInsertId();
-                $dbh->addBooking($_SESSION['id'], $lastInsertId);
+            $dbh->addTravel($date, $id);
+            $travelId = $dbh->getDbh()->lastInsertId();
+            $dbh->addBooking($_SESSION['id'], $travelId);
         } else if ($result != null) {
             if (!$dbh->getTravelerAmountByTravelId($result['TravelID']) >= $maxTravelerAmount) {
                 $dbh->addBooking($_SESSION['id'], $result['TravelID']);

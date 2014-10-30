@@ -287,7 +287,7 @@ class DatabaseInterface {
             $stmt->bindValue(':username', $username, PDO::PARAM_STR);
             $stmt->bindValue(':password', $password, PDO::PARAM_STR);
             $stmt->execute();
-            echo $travelerId = $this->dbh->lastInsertId();
+            $travelerId = $this->dbh->lastInsertId();
             $this->addAddress($travelerId, $city, $zipcode, $street, $country);
             return true;
         } catch (Exception $e) {

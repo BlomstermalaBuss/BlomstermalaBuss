@@ -30,6 +30,6 @@
         ?>   
         </table>
         <input type="hidden" name="mode" value="removeweeklyschedule">
-        <p><input type="submit" onclick="confirm('Are you sure you want to delete the selected schedule(s)?')" value="Remove weekly schedule(s)"></p>
+        <p><input type="submit" onclick="return removeWeeklyScheduleConfirmation()" value="Remove weekly schedule(s)"></p>
     </form>
 </div>

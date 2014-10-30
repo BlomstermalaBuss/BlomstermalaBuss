@@ -8,6 +8,7 @@
         <title>Blomstermåla Buss Booking System</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/style.css"/>
+        <script language="javascript" src="../js/removeWeeklyScheduleConfirmation.js"></script> 
     </head>
     <body>
         <div id="container">

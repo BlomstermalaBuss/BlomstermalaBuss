@@ -14,6 +14,7 @@
         <table class="weekly">
         <tr>
             <th>Cancel booking</th>
+            <th>Booking date</th>
             <th>Date</th>
             <th>Departure</th>
             <th>Destination</th>
@@ -27,6 +28,7 @@
         {
             echo("<tr>"
                 .  "<td>" . "<input type='radio' name='travelid' value='" . $travel['TravelID']. "'>" . "</td>"
+                .  "<td>" . $travel['BookingDate'] . "</td>"
                 .  "<td>" . $travel['Date'] . "</td>"
                 .  "<td>" . $travel['Departure'] . "</td>"
                 .  "<td>" . $travel['Destination'] . "</td>"
@@ -41,7 +43,7 @@
         <input type="submit">
     <?php
     } else {
-        echo "<p>You don't have any bookings to cancel.";
+        echo "<p>You don't have any bookings to cancel.</p>";
     }
     ?>
  </form>

@@ -1,6 +1,6 @@
 <div id="editweeklyschedule">
     <?php if(!isset($_SESSION['scheduletoedit'])) { ?>
-    <form action="processing/processing_weeklyschedule.php" method="post">
+    <form action="pages/processing/processing_weeklyschedule.php" method="post">
         <?php 
         $dbh = new DatabaseInterface();
         $schedules = $dbh->getWeeklySchedules();
@@ -38,7 +38,7 @@
     <?php } ?>
     <?php if(isset($_SESSION['scheduletoedit'])) { ?>
     <div class="formDiv">
-        <form method="POST" action="processing/processing_weeklyschedule.php">
+        <form method="POST" action="pages/processing/processing_weeklyschedule.php">
             <?php 
                 //var_dump($_SESSION['scheduletoedit']);
                 $result = $_SESSION['scheduletoedit'];

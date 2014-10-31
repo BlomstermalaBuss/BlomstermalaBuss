@@ -194,7 +194,9 @@ class DatabaseInterface {
     
     public function getTravels() {
         $sql = "SELECT *
-                FROM Travel";
+                FROM Travel
+                INNER JOIN WeeklySchedule
+                ON Travel.WeeklyScheduleID = WeeklySchedule.WeeklyScheduleID";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();

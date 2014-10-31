@@ -6,3 +6,12 @@ function removeWeeklyScheduleConfirmation() {
         return false;
     }
 }
+
+function deleteTravelConfirmation() {
+    var q = confirm('Warning! Are you sure you want to remove this/these travel(s)? Deleting this/these travels(s) will delete ALL bookings connected to this/these travel(s). Do you want to proceed?');
+    if (q) {
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -18,6 +18,7 @@ if ($travels != null) {
             <th>Arrival time</th>
             <th>Price</th>
             <th>Max traveler amount</th>
+            <th>Traveler amount</th>
         </tr>
     <?php
     foreach ($travels as $travel) {
@@ -31,6 +32,7 @@ if ($travels != null) {
             .  "<td>" . $travel['ArrivalTime'] . "</td>"
             .  "<td>" . $travel['Price'] . "</td>"
             .  "<td>" . $travel['MaxTravelerAmount'] . "</td>"
+            .  "<td>" . $dbh->getTravelerAmountByTravelId($travel['TravelID']) . "</td>"   
             . "</tr>");
     }
     ?>   

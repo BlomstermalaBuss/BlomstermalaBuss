@@ -21,7 +21,6 @@
                 <table>
                     <tr>
                         <td><a href="?p=home">Home</a></td>
-                        <td><a href="?p=booking">Book travel</a></td>
                         <td><a href="?p=cancellation">Cancellation</a></td>
                         <td><a href="?p=deletetravel">Delete travel</a></td>
                         <td><a href="?p=weeklyschedule">Manage weekly schedules</a></td>

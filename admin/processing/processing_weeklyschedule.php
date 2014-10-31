@@ -46,7 +46,7 @@ if (isset($_POST['mode'])) {
         $price = $_POST['Price'];
         $maxTravelerAmount = $_POST['MaxTravelerAmount'];
         
-        $result = $dbh->editWeeklySchedule($id, $departure, $destination, $day, $departureTime, $arrivalTime, $price, $maxTravelerAmount);
+        $result = $dbh->editWeeklySchedule($id, $departure, $destination, $departureTime, $arrivalTime, $price, $maxTravelerAmount);
         
         if ($result) {
             header('Location: ' . $_SERVER['HTTP_REFERER']);

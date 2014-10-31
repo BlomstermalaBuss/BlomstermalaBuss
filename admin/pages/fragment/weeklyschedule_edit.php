@@ -15,6 +15,7 @@
                 <th>Departure time</th>
                 <th>Arrival time</th>
                 <th>Price</th>
+                <th>Max traveler amount</th>
             </tr>
         <?php
         foreach ($schedules as $schedule) {
@@ -27,6 +28,7 @@
                 <td><?php echo $schedule['DepartureTime']; ?></td>
                 <td><?php echo $schedule['ArrivalTime']; ?></td>
                 <td><?php echo $schedule['Price']; ?></td>
+                <td><?php echo $schedule['MaxTravelerAmount']; ?></td>
             </tr>
             <?php } ?>
         </table>

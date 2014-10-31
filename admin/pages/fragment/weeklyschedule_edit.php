@@ -44,16 +44,6 @@
                 ?>
                     <p>City - departure <input type="text" name="Departure" value="<?php echo $result['Departure']; ?>"></p>
                     <p>City - destination <input type="text" name="Destination" value="<?php echo $result['Destination']; ?>"></p>
-                    <p>Day <select name="Day">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                    </p>
                     <p>Departure time (HH:MM) <input type="time" name="DepartureTime" value="<?php echo $result['DepartureTime']; ?>"></p>
                     <p>Arrival time (HH:MM) <input type="time" name="ArrivalTime" value="<?php echo $result['ArrivalTime']; ?>"></p>
                     <p>Price <input type="text" name="Price" value="<?php echo $result['Price']; ?>"></p>

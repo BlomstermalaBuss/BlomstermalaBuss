@@ -1,4 +1,4 @@
-<form action="processing/processing_booking.php" method="post">
+<form action="pages/processing/processing_booking.php" method="post">
 
     <?php 
     include "../php/classes/DatabaseInterface.class.php";

@@ -196,7 +196,8 @@ class DatabaseInterface {
         $sql = "SELECT *
                 FROM Travel
                 INNER JOIN WeeklySchedule
-                ON Travel.WeeklyScheduleID = WeeklySchedule.WeeklyScheduleID";
+                ON Travel.WeeklyScheduleID = WeeklySchedule.WeeklyScheduleID
+                ORDER BY Date ASC";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();

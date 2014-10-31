@@ -6,7 +6,7 @@ $travels = $dbh->getTravels();
 
 if ($travels != null) {
 ?>
-<form action="processing/processing_deletetravel.php" method="post">
+<form action="pages/processing/processing_deletetravel.php" method="post">
     <table class="weekly">
         <tr>
             <th>Delete</th>

@@ -1,6 +1,6 @@
 <?php
 
-include("../../php/classes/DatabaseInterface.class.php");
+include("../../../php/classes/DatabaseInterface.class.php");
 
 $dbh = new DatabaseInterface();
 

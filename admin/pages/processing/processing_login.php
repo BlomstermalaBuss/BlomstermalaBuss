@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once("../../php/classes/DatabaseInterface.class.php");
-require_once("../../php/classes/PasswordGenerator.class.php");
+require_once("../../../php/classes/DatabaseInterface.class.php");
+require_once("../../../php/classes/PasswordGenerator.class.php");
 
 $dbh = new DatabaseInterface();
 $pwGenerator = new PasswordGenerator();

@@ -2,7 +2,7 @@
 
 session_start();
 
-include("../../php/classes/DateGenerator.class.php");
+include("../../../php/classes/DateGenerator.class.php");
 
 if($_POST["mode"] == "selectTravel")
 {

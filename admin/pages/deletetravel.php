@@ -32,7 +32,7 @@ if ($travels != null) {
             .  "<td>" . $travel['ArrivalTime'] . "</td>"
             .  "<td>" . $travel['Price'] . "</td>"
             .  "<td>" . $travel['MaxTravelerAmount'] . "</td>"
-            .  "<td>" . $dbh->getTravelerAmountByTravelId($travel['TravelID']) . "</td>"   
+            .  "<td>" . $travel['TravelerAmount'] . "</td>"   
             . "</tr>");
     }
     ?>   

@@ -193,10 +193,13 @@ class DatabaseInterface {
     }
     
     public function getTravels() {
-        $sql = "SELECT *
+        $sql = "SELECT *, COUNT(Booking.TravelID) AS TravelerAmount
                 FROM Travel
                 INNER JOIN WeeklySchedule
                 ON Travel.WeeklyScheduleID = WeeklySchedule.WeeklyScheduleID
+                INNER JOIN Booking
+                ON Travel.TravelID = Booking.TravelID
+                GROUP BY Booking.TravelID
                 ORDER BY Date ASC";
         try {
             $stmt = $this->dbh->prepare($sql);

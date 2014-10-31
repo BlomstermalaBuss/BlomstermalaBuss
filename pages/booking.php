@@ -60,6 +60,6 @@ if(isset($_SESSION['error'])) {
         <?php
     }
     ?>
-    <input type="submit">
+    <p><input type="submit"></p>
 
  </form>

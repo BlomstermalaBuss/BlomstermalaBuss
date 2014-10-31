@@ -42,7 +42,7 @@
         }
         ?>
         </table>
-        <input type="submit">
+        <p><input type="submit"></p>
     <?php
     } else {
         echo "<p>You don't have any bookings to cancel.</p>";

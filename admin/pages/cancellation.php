@@ -1,28 +1,19 @@
 <?php
 include("../php/classes/DatabaseInterface.class.php");
 ?>
-
-<form action="../php/pages/processing/processing_booking.php" method="post">
-    <select size="2">
+<p>Please select a traveler to cancel all of his/hers bookings.</p>
+<form action="processing/processing_cancellation.php" method="post">
+    <p><select name="Traveler">
     <?php
     $dbh= new DatabaseInterface();
-    $result1 = $dbh->getTravelers();
+    $travelers = $dbh->getTravelers();
     
-    foreach ($result1 as $traveler) {
-       
-          ?>
-    
-    
+    foreach ($travelers as $traveler) {
+    ?>
         <option value= "<?php echo $traveler['TravelerID']  ?>"  > <?php  echo $traveler['Name']  ?> </option>
-    
-    
     <?php } ?>
-    </select>
-  
-    
-   
-    <br><br>
-    <input type="submit" value="Cancel your trip">
+    </select></p>
+    <input type="submit" value="Cancel traveler's trip">
     
 </form>
     

@@ -181,10 +181,12 @@ class DatabaseInterface {
                 SET Date = :date, WeeklyScheduleID = :weeklyScheduleId
                 WHERE TravelID = :id";
         try {
+            $this->dbh->beginTransaction();
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':date', $date, PDO::PARAM_STR);
             $stmt->bindValue(':weeklyScheduleId', $weeklyScheduleId, PDO::PARAM_INT);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $this->dbh->commit();
             return $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -451,6 +453,7 @@ class DatabaseInterface {
                     ArrivalTime = :arrivalTime, Price = :price, MaxTravelerAmount = :maxTravelerAmount
                 WHERE WeeklyScheduleID = :id";
         try {
+            $this->dbh->beginTransaction();
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':departure', $departure, PDO::PARAM_STR);
             $stmt->bindValue(':destination', $destination, PDO::PARAM_STR);
@@ -459,6 +462,7 @@ class DatabaseInterface {
             $stmt->bindValue(':price', $price, PDO::PARAM_STR);
             $stmt->bindValue(':maxTravelerAmount', $maxTravelerAmount, PDO::PARAM_INT);
             $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+            $this->dbh->commit();
             return $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();

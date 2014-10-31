@@ -22,6 +22,7 @@
             <th>Departure time</th>
             <th>Arrival time</th>
             <th>Price</th>
+            <th>Max traveler amount</th>
         </tr>
         <?php
         foreach ($travels as $travel)
@@ -36,6 +37,7 @@
                 .  "<td>" . $travel['DepartureTime'] . "</td>"
                 .  "<td>" . $travel['ArrivalTime'] . "</td>"
                 .  "<td>" . $travel['Price'] . "</td>"
+                .  "<td>" . $travel['MaxTravelerAmount'] . "</td>"
         . "</tr>");
         }
         ?>

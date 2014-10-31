@@ -22,6 +22,7 @@ if(isset($_SESSION['error'])) {
             <th>Departure time</th>
             <th>Arrival time</th>
             <th>Price</th>
+            <th>Max traveler amount</th>
         </tr>
      <?php
      foreach ($result1 as $schedule) 
@@ -34,6 +35,7 @@ if(isset($_SESSION['error'])) {
              .  "<td>" . $schedule['DepartureTime'] . "</td>"
              .  "<td>" . $schedule['ArrivalTime'] . "</td>"
              .  "<td>" . $schedule['Price'] . "</td>"
+             .  "<td>" . $schedule['MaxTravelerAmount'] . "</td>"
      . "</tr>");
      $_SESSION['travels'] = $result1;
      }

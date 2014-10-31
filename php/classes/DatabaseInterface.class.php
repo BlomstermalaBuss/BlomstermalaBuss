@@ -243,7 +243,7 @@ class DatabaseInterface {
     public function getTravelsByTravelerId($id) {
         $sql = "SELECT Travel.TravelID AS TravelID, Booking.BookingDate AS BookingDate, Travel.Date AS Date, WeeklySchedule.Departure AS Departure, 
                        WeeklySchedule.Destination AS Destination, WeeklySchedule.Day AS Day, WeeklySchedule.DepartureTime as DepartureTime, 
-                       WeeklySchedule.ArrivalTime AS ArrivalTime, WeeklySchedule.Price AS Price
+                       WeeklySchedule.ArrivalTime AS ArrivalTime, WeeklySchedule.Price AS Price, WeeklySchedule.MaxTravelerAmount as MaxTravelerAmount
                 FROM Travel
                 INNER JOIN Booking
                 ON Travel.TravelID = Booking.TravelID

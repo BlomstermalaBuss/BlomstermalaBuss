@@ -305,27 +305,6 @@ class DatabaseInterface {
         }
     }
     
-    /*public function editTraveler($id, $name, $socialSecurityNr, $city, $zipcode, $street, $country) {
-        $sql = "UPDATE Traveler
-                SET Name = :name, SocialSecurityNr = :socialSecurityNr, City = :city, Zipcode = :zipcode, 
-                    Street = :street, Country = :country;
-                WHERE WeeklyScheduleID = :id";
-        try {
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-            $stmt->bindValue(':socialSecurityNr', $socialSecurityNr, PDO::PARAM_STR);
-            $stmt->bindValue(':city', $city, PDO::PARAM_STR);
-            $stmt->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
-            $stmt->bindValue(':street', $street, PDO::PARAM_STR);
-            $stmt->bindValue(':country', $country, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            return $stmt->execute();
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            die();
-        }
-    }*/
-    
     public function getTravelers() {
         $sql = "SELECT *
                 FROM Traveler

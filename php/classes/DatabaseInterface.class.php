@@ -257,7 +257,8 @@ class DatabaseInterface {
                 INNER JOIN WeeklySchedule
                 ON Travel.WeeklyScheduleID = WeeklySchedule.WeeklyScheduleID
                 WHERE Traveler.TravelerID = :id
-                ORDER BY Date ASC";
+                ORDER BY Date ASC
+        		WHERE Date >= NOW()";
         try {
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);

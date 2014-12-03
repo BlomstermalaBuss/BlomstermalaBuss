@@ -48,7 +48,9 @@ if(isset($_SESSION['error'])) {
     <?php if(isset($_SESSION['traveltobook'])) {
         $session = $_SESSION;
         unset($_SESSION['traveltobook']);
-        echo '<p>Which date would you like to book the travel? <select name="date">';
+        ?>
+        <p>Which date would you like to book the travel? <select name="date">
+        <?php
         foreach ($session['dates'] as $date) {
             ?>
             <option value="<?php echo $date; ?>"><?php echo $date; ?></option>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('' . $_SERVER['DOCUMENT_ROOT'] . '/DatabaseConfiguration.class.php');
+require_once("DatabaseConfiguration.class.php");
 
 class DatabaseInterface {
 

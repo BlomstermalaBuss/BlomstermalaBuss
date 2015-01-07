@@ -98,3 +98,6 @@ proguard/
 # PDT-specific
 .buildpath
 /target
+
+# Custom
+php/classes/DatabaseConfiguration.class.php
